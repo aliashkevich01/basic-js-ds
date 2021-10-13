@@ -22,18 +22,23 @@ module.exports = class Queue {
   }
 
   enqueue(value) {
-    if(this.queue==null){
-      return this.queue=new NodeList(value);
+    let num=new ListNode(value);
+    if(!this.queue){
+      this.queue=num;
+      return;
     }
-    let p=this.queue;
-    while(p.next!=null){
-      p=p.next;
+    let check= (p)=>{
+      if(!p.next){
+        p.next=node;
+        return;
+      }
+      check(p.next);
     }
-    return p.next=new NodeList(value);
+    check(this.queue);
   }
 
   dequeue() {
-    if(this.queue==null) {
+    if(!this.queue) {
       return null; 
     }
     let result=this.queue.result;

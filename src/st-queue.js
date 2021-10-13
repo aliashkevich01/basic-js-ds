@@ -22,27 +22,24 @@ module.exports = class Queue {
   }
 
   enqueue(value) {
-    const node = new ListNode(value);
-    if (this.list) {
-      let temp = this.list
-      while (temp.next) {
+    const node = new ListNode(value); 
 
-        temp = temp.next;
-      }
-      temp.next = node;
+    if (this.list == undefined) this.list = node; 
+    else {
+      let current = this.list;
 
-    } else {
-      this.list = node;
+      while (current.next != null) {
+     current = current.next;
     }
+    current.next = new ListNode(value);
+    }
+    return this;
+  }
+  dequeue(){
+    const p = this.list.value;
+    this.list = this.list.next;
+    return p;
+  }
   }
 
-  dequeue() {
-    if (this.list) {
-      const head = this.list;
-      this.list = head.next;
-
-      return head.value;
-    }
-    return null;
-  }
-}
+  

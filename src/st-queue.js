@@ -23,13 +23,13 @@ module.exports = class Queue {
 
   enqueue(value) {
     if(this.queue==null){
-      return this.queue=new NodeList(result);
+      return this.queue=new NodeList(value);
     }
-    let result=this.queue;
-    while(result.next!=null){
-      result=result.next;
+    let p=this.queue;
+    while(p.next!=null){
+      p=p.next;
     }
-    return result.next=new NodeList(value);
+    return p.next=new NodeList(value);
   }
 
   dequeue() {

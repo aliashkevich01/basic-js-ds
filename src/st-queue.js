@@ -14,7 +14,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
 module.exports = class Queue {
-  init(){
+  constructor(){
     this.list=null;
   }
   getUnderlyingList() {

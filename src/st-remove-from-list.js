@@ -24,7 +24,7 @@ module.exports = function removeKFromList( l, k ) {
     l.forEach((element)=> {
       if(element!==k) result.push(element);
     })
-    let list=result.reduce((a,current)=>new ListNode((current,a),null));
+    let list=result.reverse().reduce((a,current)=>new ListNode((current,a),null));
     return list;
    
 }

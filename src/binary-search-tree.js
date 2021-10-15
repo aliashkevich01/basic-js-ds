@@ -86,29 +86,24 @@ module.exports = class BinarySearchTree {
     this.rootNode=this.rm(this.rootNode,data);
     return this;
   }
+  findMin(root) { 
+    if (root.left === null) return root;
+    else return this.findMin(root.left);
+  }
+
+  findMax(root) { 
+    if (root.right === null) return root;
+    else return this.findMax(root.right);
+  }
 
   min() {
-    if(!this.rootNode){
-      return null;
-    }
-    else{
-      while(this.rootNode.left){
-        this.rootNode=this.rootNode.left;
-      }
-    }
-    return this.rootNode;
+    if (!this.rootNode) return null;
+    return this.findMin(this.rootNode).data;
   }
-  
 
   max() {
-    if(!this.rootNode){
-      return null;
-    }
-    else{
-      while(this.rootNode.right){
-        this.rootNode=this.rootNode.right;
-      }
-    }
-    return this.rootNode;
+    if (!this.rootNode) return null;
+    return this.findMax(this.rootNode).data;
   }
+  
 }

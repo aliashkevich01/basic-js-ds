@@ -53,33 +53,21 @@ module.exports = class BinarySearchTree {
     return this.findNode(this.rootNode,data);
   }
 
-  rm(r,data){
-    if(!r){
-      return null;
-    }
-    else if(data<r.data){
-      return this.rm(r.left,data);
-    }
-    else if (data>r.data) {
-      return this.rm(r.right,data);
-    }
-    else{
-      if(!r.left&&r.right){
-        return null;
+  rm(root, data){
+    if (root === null) return null;
+    else if (data < root.data) root.left = this.rm(root.left, data);
+    else if (data > root.data) root.right = this.rm(root.right, data);
+    else {
+        if (root.left === null && root.right === null) root = null;
+        else if (root.left === null) root = root.right;
+        else if (root.right === null) root = root.left;
+        else {
+          let newNode = this.findMin(root.right);
+          root.data = newNode.data;
+          root.right = this.rm(root.right, newNode.data);
+        }
       }
-      else if(!r.left){
-        r=r.right;
-      }
-      else if(!r.right){
-        r=r.left;
-      }
-      else{
-        let newNode=this.min(r.right);
-        r.data=newNode.data;
-        r.right=this.rm(r.right,newNode.data);
-      }
-    }
-    return r;
+    return root;
   }
 
   remove(data) {
